@@ -289,6 +289,80 @@
 
     .row-highlight { background: rgba(55, 138, 221, 0.04); }
 
+    /* Régua — card layout mobile */
+    .regua-row { display: contents; }
+    .regua-pct-row { display: contents; }
+    .regua-exemplo-row { display: contents; }
+
+    @media (max-width: 640px) {
+      .regua-wrapper {
+        overflow-x: unset;
+      }
+      .regua-grid.regua-grid-5 {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        border: none;
+        border-radius: 0;
+        min-width: unset;
+        overflow: visible;
+      }
+      .regua-header { display: none; }
+      .regua-row {
+        display: block;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+      }
+      /* primeira célula: info da faixa */
+      .regua-row > .regua-cell {
+        border-top: none;
+        padding: 14px 16px 12px;
+        background: var(--bg-secondary) !important;
+      }
+      /* linha de percentuais lado a lado */
+      .regua-pct-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-top: 1px solid var(--border);
+      }
+      .regua-pct-row .regua-cell {
+        border-top: none;
+        padding: 14px 12px;
+        background: unset !important;
+      }
+      .regua-pct-row .regua-cell:first-child {
+        border-right: 1px solid var(--border);
+      }
+      /* linha de exemplos lado a lado */
+      .regua-exemplo-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-top: 1px solid var(--border);
+      }
+      .regua-exemplo-row .regua-cell {
+        border-top: none;
+        padding: 10px 12px;
+        background: unset !important;
+      }
+      .regua-exemplo-row .regua-cell:first-child {
+        border-right: 1px solid var(--border);
+      }
+      /* mini-label acima de cada célula interna */
+      .regua-cell[data-label]::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 6px;
+      }
+      .scroll-hint { display: none; }
+    }
+
     .exemplo-inner {
       background: var(--bg-secondary);
       border-radius: var(--radius-sm);
@@ -349,6 +423,26 @@
       font-size: 12px;
       color: var(--text-secondary);
       font-weight: 400;
+    }
+    .addon-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .addon-list li {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .addon-list li:last-child { margin-bottom: 0; }
+    .addon-list .list-val {
+      font-weight: 600;
+      color: var(--text-primary);
+      white-space: nowrap;
     }
 
     /* Workflow */
@@ -517,8 +611,8 @@
     </div>
 
     <!-- Profissional -->
-    <div class="plan-card featured">
-      <span class="plan-badge">Parceria completa</span>
+    <div class="plan-card">
+      <span class="plan-badge" style="background: var(--bg-secondary); color: var(--text-secondary);">Parceria completa</span>
       <p class="plan-name">Profissional</p>
       <p class="plan-sub">Atuação integrada — o cliente enxerga uma equipe só</p>
       <div class="plan-context">
@@ -545,14 +639,14 @@
       <div class="workflow-step-number" style="background: var(--bg-info); color: var(--text-info);">1</div>
       <p class="workflow-step-title">Alinhamento / Repasse</p>
       <p class="workflow-step-desc">Reunião de briefing com a consultoria parceira <strong style="color: var(--text-primary);">(Essencial)</strong> ou diretamente com o cliente final <strong style="color: var(--text-primary);">(Profissional)</strong>. Gera um artefato completo com todos os detalhes da vaga: perfil, requisitos, faixa salarial, cultura e expectativas.</p>
-      <span class="workflow-step-tag" style="background: var(--bg-info); color: var(--text-info);">Artefato: Briefing da vaga</span>
+      <span class="workflow-step-tag" style="background: var(--bg-info); color: var(--text-info);">Entregável: Briefing da vaga</span>
     </div>
 
     <div class="workflow-step">
       <div class="workflow-step-number" style="background: var(--bg-warning); color: var(--text-warning);">2</div>
       <p class="workflow-step-title">Mapeamento</p>
       <p class="workflow-step-desc">Pesquisa ativa de mercado para identificar candidatos aderentes ao perfil. Essa entrega serve para <strong style="color: var(--text-primary);">validar se a vaga alinhada está com expectativas realistas</strong> antes de avançar para o processo seletivo completo.</p>
-      <span class="workflow-step-tag" style="background: var(--bg-warning); color: var(--text-warning);">Artefato: Mapa de candidatos</span>
+      <span class="workflow-step-tag" style="background: var(--bg-warning); color: var(--text-warning);">Entregável: Mapa de candidatos</span>
     </div>
 
     <div class="workflow-step">
@@ -566,47 +660,9 @@
       <div class="workflow-step-number" style="background: var(--bg-success); color: var(--text-success);">4</div>
       <p class="workflow-step-title">Entrega (Shortlist)</p>
       <p class="workflow-step-desc">Relatório final com <strong style="color: var(--text-primary);">2 a 3 candidatos</strong> dentro do perfil alinhado, seguindo o padrão visual e de comunicação da consultoria parceira, pronto para apreciação do cliente final.</p>
-      <span class="workflow-step-tag" style="background: var(--bg-success); color: var(--text-success);">Artefato: Relatório shortlist</span>
+      <span class="workflow-step-tag" style="background: var(--bg-success); color: var(--text-success);">Entregável: Relatório shortlist</span>
     </div>
 
-  </div>
-
-  <!-- Estrutura de pagamento -->
-  <p class="section-label">Estrutura de pagamento</p>
-  <div class="policy-box" style="margin-bottom: 0;">
-    <p class="policy-title"><i class="ti ti-receipt-2"></i>Etapas de recebimento — válido para ambos os planos</p>
-    <div class="payment-stages">
-      <div class="etapa-row"><div class="etapa-dot" style="background:#378ADD"></div><div class="etapa-info">Abertura da vaga</div><div class="etapa-pct">15%</div></div>
-      <div class="etapa-row"><div class="etapa-dot" style="background:#1D9E75"></div><div class="etapa-info">Entrega do shortlist</div><div class="etapa-pct">15%</div></div>
-      <div class="etapa-row"><div class="etapa-dot" style="background:#534AB7"></div><div class="etapa-info">Candidato contratado</div><div class="etapa-pct">70%</div></div>
-    </div>
-    <p style="font-size: 12px; color: var(--text-secondary); margin-top: 14px; line-height: 1.6;">
-      Os percentuais acima incidem sobre o fee total da vaga (calculado pela régua de faixa salarial abaixo). 
-      A estrutura é a mesma para os planos Essencial e Profissional — o que muda é o percentual aplicado ao salário.
-    </p>
-
-    <!-- Exemplo prático -->
-    <div style="margin-top: 20px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px;">
-      <p style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.06em;">Exemplo prático — Vaga de R$ 11.000 (Plano Profissional)</p>
-      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; text-align: center;">
-        <div style="background: var(--bg-card); border-radius: var(--radius-sm); padding: 12px;">
-          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px;">Abertura</p>
-          <p style="font-size: 18px; font-weight: 700; color: var(--text-info);">R$ 495</p>
-          <p style="font-size: 11px; color: var(--text-secondary);">15% do fee</p>
-        </div>
-        <div style="background: var(--bg-card); border-radius: var(--radius-sm); padding: 12px;">
-          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px;">Shortlist</p>
-          <p style="font-size: 18px; font-weight: 700; color: var(--text-success);">R$ 495</p>
-          <p style="font-size: 11px; color: var(--text-secondary);">15% do fee</p>
-        </div>
-        <div style="background: var(--bg-card); border-radius: var(--radius-sm); padding: 12px;">
-          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px;">Fechamento</p>
-          <p style="font-size: 18px; font-weight: 700; color: #7c6edc;">R$ 2.310</p>
-          <p style="font-size: 11px; color: var(--text-secondary);">70% do fee</p>
-        </div>
-      </div>
-      <p style="font-size: 12px; color: var(--text-secondary); margin-top: 12px; text-align: center;">Fee total da vaga: <strong style="color: var(--text-primary);">R$ 3.300</strong> (30% de R$ 11.000) &nbsp;|&nbsp; Compare com o Essencial: <strong style="color: var(--text-primary);">R$ 2.200</strong> (20%)</p>
-    </div>
   </div>
 
   <!-- Régua -->
@@ -620,48 +676,72 @@
       <div class="regua-header">Exemplo Profissional</div>
 
       <!-- Faixa mínima -->
-      <div class="regua-cell">
-        <span class="faixa-tag" style="background: rgba(158, 158, 158, 0.15); color: #bbb;">Faixa mínima</span>
-        <p class="faixa-range">Abaixo de R$ 5.000</p>
-        <p class="faixa-obs">Fee fixo independente do salário.</p>
+      <div class="regua-row">
+        <div class="regua-cell">
+          <span class="faixa-tag" style="background: rgba(158, 158, 158, 0.15); color: #bbb;">Faixa mínima</span>
+          <p class="faixa-range">Abaixo de R$ 5.000</p>
+          <p class="faixa-obs">Valor fixo independente do salário.</p>
+        </div>
+        <div class="regua-pct-row">
+          <div class="regua-cell center" data-label="Essencial"><p class="pct-num" style="color:#bbb; font-size: 1.1rem;">Fixo</p><p class="pct-sub">R$ 1.200</p></div>
+          <div class="regua-cell center" data-label="Profissional"><p class="pct-num" style="color:#bbb; font-size: 1.1rem;">Fixo</p><p class="pct-sub">R$ 1.600</p></div>
+        </div>
+        <div class="regua-exemplo-row">
+          <div class="regua-cell" data-label="Exemplo Essencial"><div class="exemplo-inner">Salário R$ 4.000<div class="exemplo-val">Valor: R$ 1.200</div></div></div>
+          <div class="regua-cell" data-label="Exemplo Profissional"><div class="exemplo-inner">Salário R$ 4.000<div class="exemplo-val">Valor: R$ 1.600</div></div></div>
+        </div>
       </div>
-      <div class="regua-cell center"><p class="pct-num" style="color:#bbb; font-size: 1.1rem;">Fixo</p><p class="pct-sub">R$ 1.200</p></div>
-      <div class="regua-cell center"><p class="pct-num" style="color:#bbb; font-size: 1.1rem;">Fixo</p><p class="pct-sub">R$ 1.600</p></div>
-      <div class="regua-cell"><div class="exemplo-inner">Salário R$ 4.000<div class="exemplo-val">Fee total: R$ 1.200</div></div></div>
-      <div class="regua-cell"><div class="exemplo-inner">Salário R$ 4.000<div class="exemplo-val">Fee total: R$ 1.600</div></div></div>
 
       <!-- Faixa baixa -->
-      <div class="regua-cell row-highlight">
-        <span class="faixa-tag warning">Faixa baixa</span>
-        <p class="faixa-range">R$ 5.000 – R$ 8.000</p>
-        <p class="faixa-obs">Percentual maior compensa ticket baixo.</p>
+      <div class="regua-row">
+        <div class="regua-cell row-highlight">
+          <span class="faixa-tag warning">Faixa baixa</span>
+          <p class="faixa-range">R$ 5.000 – R$ 8.000</p>
+          <p class="faixa-obs">Percentual maior compensa ticket baixo.</p>
+        </div>
+        <div class="regua-pct-row">
+          <div class="regua-cell center row-highlight" data-label="Essencial"><p class="pct-num" style="color:#f0ad4e">25%</p><p class="pct-sub">do salário</p></div>
+          <div class="regua-cell center row-highlight" data-label="Profissional"><p class="pct-num" style="color:#f0ad4e">35%</p><p class="pct-sub">do salário</p></div>
+        </div>
+        <div class="regua-exemplo-row">
+          <div class="regua-cell row-highlight" data-label="Exemplo Essencial"><div class="exemplo-inner">Salário R$ 6.000<div class="exemplo-val">Valor: R$ 1.500</div></div></div>
+          <div class="regua-cell row-highlight" data-label="Exemplo Profissional"><div class="exemplo-inner">Salário R$ 6.000<div class="exemplo-val">Valor: R$ 2.100</div></div></div>
+        </div>
       </div>
-      <div class="regua-cell center row-highlight"><p class="pct-num" style="color:#f0ad4e">25%</p><p class="pct-sub">do salário</p></div>
-      <div class="regua-cell center row-highlight"><p class="pct-num" style="color:#f0ad4e">35%</p><p class="pct-sub">do salário</p></div>
-      <div class="regua-cell row-highlight"><div class="exemplo-inner">Salário R$ 6.000<div class="exemplo-val">Fee total: R$ 1.500</div></div></div>
-      <div class="regua-cell row-highlight"><div class="exemplo-inner">Salário R$ 6.000<div class="exemplo-val">Fee total: R$ 2.100</div></div></div>
 
       <!-- Faixa padrão -->
-      <div class="regua-cell">
-        <span class="faixa-tag info">Faixa padrão</span>
-        <p class="faixa-range">R$ 8.000 – R$ 15.000</p>
-        <p class="faixa-obs">Faixa ideal. Percentuais base do portfólio.</p>
+      <div class="regua-row">
+        <div class="regua-cell">
+          <span class="faixa-tag info">Faixa padrão</span>
+          <p class="faixa-range">R$ 8.000 – R$ 15.000</p>
+          <p class="faixa-obs">Faixa ideal. Percentuais base do portfólio.</p>
+        </div>
+        <div class="regua-pct-row">
+          <div class="regua-cell center" data-label="Essencial"><p class="pct-num" style="color:#64b5f6">20%</p><p class="pct-sub">do salário</p></div>
+          <div class="regua-cell center" data-label="Profissional"><p class="pct-num" style="color:#64b5f6">30%</p><p class="pct-sub">do salário</p></div>
+        </div>
+        <div class="regua-exemplo-row">
+          <div class="regua-cell" data-label="Exemplo Essencial"><div class="exemplo-inner">Salário R$ 11.000<div class="exemplo-val">Valor: R$ 2.200</div></div></div>
+          <div class="regua-cell" data-label="Exemplo Profissional"><div class="exemplo-inner">Salário R$ 11.000<div class="exemplo-val">Valor: R$ 3.300</div></div></div>
+        </div>
       </div>
-      <div class="regua-cell center"><p class="pct-num" style="color:#64b5f6">20%</p><p class="pct-sub">do salário</p></div>
-      <div class="regua-cell center"><p class="pct-num" style="color:#64b5f6">30%</p><p class="pct-sub">do salário</p></div>
-      <div class="regua-cell"><div class="exemplo-inner">Salário R$ 11.000<div class="exemplo-val">Fee total: R$ 2.200</div></div></div>
-      <div class="regua-cell"><div class="exemplo-inner">Salário R$ 11.000<div class="exemplo-val">Fee total: R$ 3.300</div></div></div>
 
       <!-- Faixa premium -->
-      <div class="regua-cell row-highlight">
-        <span class="faixa-tag success">Faixa premium</span>
-        <p class="faixa-range">A partir de R$ 15.000</p>
-        <p class="faixa-obs">Ticket alto compensa percentual menor.</p>
+      <div class="regua-row">
+        <div class="regua-cell row-highlight">
+          <span class="faixa-tag success">Faixa premium</span>
+          <p class="faixa-range">A partir de R$ 15.000</p>
+          <p class="faixa-obs">Ticket alto compensa percentual menor.</p>
+        </div>
+        <div class="regua-pct-row">
+          <div class="regua-cell center row-highlight" data-label="Essencial"><p class="pct-num" style="color:#66bb6a">15%</p><p class="pct-sub">do salário</p></div>
+          <div class="regua-cell center row-highlight" data-label="Profissional"><p class="pct-num" style="color:#66bb6a">25%</p><p class="pct-sub">do salário</p></div>
+        </div>
+        <div class="regua-exemplo-row">
+          <div class="regua-cell row-highlight" data-label="Exemplo Essencial"><div class="exemplo-inner">Salário R$ 20.000<div class="exemplo-val">Valor: R$ 3.000</div></div></div>
+          <div class="regua-cell row-highlight" data-label="Exemplo Profissional"><div class="exemplo-inner">Salário R$ 20.000<div class="exemplo-val">Valor: R$ 5.000</div></div></div>
+        </div>
       </div>
-      <div class="regua-cell center row-highlight"><p class="pct-num" style="color:#66bb6a">15%</p><p class="pct-sub">do salário</p></div>
-      <div class="regua-cell center row-highlight"><p class="pct-num" style="color:#66bb6a">25%</p><p class="pct-sub">do salário</p></div>
-      <div class="regua-cell row-highlight"><div class="exemplo-inner">Salário R$ 20.000<div class="exemplo-val">Fee total: R$ 3.000</div></div></div>
-      <div class="regua-cell row-highlight"><div class="exemplo-inner">Salário R$ 20.000<div class="exemplo-val">Fee total: R$ 5.000</div></div></div>
     </div>
   </div>
 
@@ -671,19 +751,67 @@
       <i class="ti ti-zoom-in addon-icon"></i>
       <p class="addon-name">Mapeamento de mercado</p>
       <p class="addon-desc">Pesquisa de perfis disponíveis para uma posição, sem processo de seleção</p>
-      <p class="addon-price">A consultar <span>/ vaga</span></p>
+      <ul class="addon-list">
+        <li><span>Até R$ 8.000</span><span class="list-val">R$ 800</span></li>
+        <li><span>R$ 8.000 – R$ 15.000</span><span class="list-val">R$ 1.200</span></li>
+        <li><span>Acima de R$ 15.000</span><span class="list-val">R$ 1.800</span></li>
+      </ul>
     </div>
     <div class="addon-card">
       <i class="ti ti-chart-bar addon-icon"></i>
       <p class="addon-name">Benchmark salarial</p>
       <p class="addon-desc">Pesquisa de faixas salariais para posição e segmento específicos</p>
-      <p class="addon-price">A consultar <span>/ relatório</span></p>
+      <p class="addon-price">R$ 850 <span>/ relatório</span></p>
     </div>
     <div class="addon-card">
       <i class="ti ti-user-check addon-icon"></i>
       <p class="addon-name">Onboarding executivo</p>
       <p class="addon-desc">Acompanhamento do candidato + cliente nos primeiros 30, 60 ou 90 dias</p>
-      <p class="addon-price">R$ 250 <span>/ sessão</span></p>
+      <ul class="addon-list">
+        <li><span>Pacote 30 dias (1 sessão)</span><span class="list-val">R$ 250</span></li>
+        <li><span>Pacote 60 dias (2 sessões)</span><span class="list-val">R$ 450</span></li>
+        <li><span>Pacote 90 dias (3 sessões)</span><span class="list-val">R$ 600</span></li>
+      </ul>
+    </div>
+  </div>
+
+  
+
+  <!-- Estrutura de pagamento -->
+  <p class="section-label">Estrutura de pagamento</p>
+  <div class="policy-box" style="margin-bottom: 0;">
+    <p class="policy-title"><i class="ti ti-receipt-2"></i>Etapas de recebimento — válido para ambos os planos</p>
+    <div class="payment-stages">
+      <div class="etapa-row"><div class="etapa-dot" style="background:#378ADD"></div><div class="etapa-info">Abertura da vaga</div><div class="etapa-pct">15%</div></div>
+      <div class="etapa-row"><div class="etapa-dot" style="background:#1D9E75"></div><div class="etapa-info">Entrega do shortlist</div><div class="etapa-pct">15%</div></div>
+      <div class="etapa-row"><div class="etapa-dot" style="background:#534AB7"></div><div class="etapa-info">Candidato contratado</div><div class="etapa-pct">70%</div></div>
+    </div>
+    <p style="font-size: 12px; color: var(--text-secondary); margin-top: 14px; line-height: 1.6;">
+      Os percentuais acima incidem sobre o valor total da vaga (calculado pela régua de faixa salarial abaixo). 
+      A estrutura é a mesma para os planos Essencial e Profissional — o que muda é o percentual aplicado ao salário.
+    </p>
+
+    <!-- Exemplo prático -->
+    <div style="margin-top: 20px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px;">
+      <p style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.06em;">Exemplo prático — Vaga de R$ 11.000 (Plano Profissional)</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; text-align: center;">
+        <div style="background: var(--bg-card); border-radius: var(--radius-sm); padding: 12px;">
+          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px;">Abertura</p>
+          <p style="font-size: 18px; font-weight: 700; color: var(--text-info);">R$ 495</p>
+          <p style="font-size: 11px; color: var(--text-secondary);">15% do valor</p>
+        </div>
+        <div style="background: var(--bg-card); border-radius: var(--radius-sm); padding: 12px;">
+          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px;">Shortlist</p>
+          <p style="font-size: 18px; font-weight: 700; color: var(--text-success);">R$ 495</p>
+          <p style="font-size: 11px; color: var(--text-secondary);">15% do valor</p>
+        </div>
+        <div style="background: var(--bg-card); border-radius: var(--radius-sm); padding: 12px;">
+          <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px;">Fechamento</p>
+          <p style="font-size: 18px; font-weight: 700; color: #7c6edc;">R$ 2.310</p>
+          <p style="font-size: 11px; color: var(--text-secondary);">70% do valor</p>
+        </div>
+      </div>
+      <p style="font-size: 12px; color: var(--text-secondary); margin-top: 12px; text-align: center;">Valor total da vaga: <strong style="color: var(--text-primary);">R$ 3.300</strong> (30% de R$ 11.000) &nbsp;|&nbsp; Compare com o Essencial: <strong style="color: var(--text-primary);">R$ 2.200</strong> (20%)</p>
     </div>
   </div>
 
