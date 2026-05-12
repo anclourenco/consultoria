@@ -688,7 +688,6 @@
         <div class="regua-cell">
           <span class="faixa-tag" style="background: rgba(107, 107, 107, 0.1); color: var(--text-secondary);">Faixa mínima</span>
           <p class="faixa-range">Abaixo de R$ 5.000</p>
-          <p class="faixa-obs">Valor fixo independente do salário.</p>
         </div>
         <div class="regua-pct-row">
           <div class="regua-cell center" data-label="Essencial"><p class="pct-num" style="color: var(--text-secondary); font-size: 1.1rem;">Fixo</p><p class="pct-sub">R$ 1.200</p></div>
@@ -705,7 +704,6 @@
         <div class="regua-cell row-highlight">
           <span class="faixa-tag warning">Faixa baixa</span>
           <p class="faixa-range">R$ 5.000 – R$ 8.000</p>
-          <p class="faixa-obs">Percentual maior compensa ticket baixo.</p>
         </div>
         <div class="regua-pct-row">
           <div class="regua-cell center row-highlight" data-label="Essencial"><p class="pct-num" style="color: var(--text-warning)">25%</p><p class="pct-sub">do salário</p></div>
@@ -722,7 +720,6 @@
         <div class="regua-cell">
           <span class="faixa-tag info">Faixa padrão</span>
           <p class="faixa-range">R$ 8.000 – R$ 15.000</p>
-          <p class="faixa-obs">Faixa ideal. Percentuais base do portfólio.</p>
         </div>
         <div class="regua-pct-row">
           <div class="regua-cell center" data-label="Essencial"><p class="pct-num" style="color: var(--accent)">20%</p><p class="pct-sub">do salário</p></div>
@@ -739,7 +736,6 @@
         <div class="regua-cell row-highlight">
           <span class="faixa-tag success">Faixa premium</span>
           <p class="faixa-range">A partir de R$ 15.000</p>
-          <p class="faixa-obs">Ticket alto compensa percentual menor.</p>
         </div>
         <div class="regua-pct-row">
           <div class="regua-cell center row-highlight" data-label="Essencial"><p class="pct-num" style="color: var(--text-success)">15%</p><p class="pct-sub">do salário</p></div>
@@ -827,25 +823,28 @@
   <p class="section-label">Políticas</p>
   <div class="policy-grid">
     <div class="policy-box full-width">
-      <p class="policy-title"><i class="ti ti-ban"></i>Cancelamento</p>
-      <div class="policy-row"><span class="policy-label">Antes do mapeamento</span><span class="policy-value">Sem cobrança</span></div>
-      <div class="policy-row"><span class="policy-label">Após mapeamento</span><span class="policy-value">50% do shortlist</span></div>
-      <div class="policy-row"><span class="policy-label">Após shortlist entregue</span><span class="policy-value">100% do shortlist</span></div>
-      <div class="policy-row"><span class="policy-label">Reativação de vaga suspensa</span><span class="policy-value">= etapa de abertura</span></div>
+      <p class="policy-title"><i class="ti ti-ban"></i>Cancelamento e suspensão</p>
+      <div class="policy-row"><span class="policy-label">Antes do início do mapeamento</span><span class="policy-value">Sem cobrança</span></div>
+      <div class="policy-row"><span class="policy-label">Após início do mapeamento</span><span class="policy-value">Retém etapa de abertura (15%)</span></div>
+      <div class="policy-row"><span class="policy-label">Após entrega do shortlist</span><span class="policy-value">Retém abertura + shortlist (30%)</span></div>
+      <div class="policy-row"><span class="policy-label">Suspensão por inatividade do cliente (30 dias sem retorno)</span><span class="policy-value">Vaga congelada automaticamente</span></div>
+      <div class="policy-row"><span class="policy-label">Reativação de vaga congelada</span><span class="policy-value">Nova etapa de abertura (15%)</span></div>
     </div>
     <div class="policy-box full-width">
       <p class="policy-title"><i class="ti ti-clock"></i>SLA de entrega</p>
-      <div class="policy-row"><span class="policy-label">Entrega de mapeamento</span><span class="policy-value">10 dias após início</span></div>
-      <div class="policy-row"><span class="policy-label">Entrega de relatório</span><span class="policy-value">20 dias após início</span></div>
-      <div class="policy-row"><span class="policy-label">Comunicação de imprevistos</span><span class="policy-value">Mín. 3 dias de antecedência</span></div>
-      <div class="policy-row"><span class="policy-label">Vaga sem retorno após shortlist (30 dias)</span><span class="policy-value">Suspensão + 10% do valor restante</span></div>
+      <div class="policy-row"><span class="policy-label">Mapeamento de mercado (long list)</span><span class="policy-value">Até 7 dias úteis</span></div>
+      <div class="policy-row"><span class="policy-label">Shortlist final (2–3 candidatos)</span><span class="policy-value">Até 20 dias úteis</span></div>
+      <div class="policy-row"><span class="policy-label">Status report semanal</span><span class="policy-value">Toda segunda-feira</span></div>
+      <div class="policy-row"><span class="policy-label">Resposta a comunicações</span><span class="policy-value">Até 24h úteis</span></div>
+      <div class="policy-row"><span class="policy-label">Aviso de imprevistos ou atrasos</span><span class="policy-value">Mín. 48h de antecedência</span></div>
     </div>
     <div class="policy-box full-width">
-      <p class="policy-title"><i class="ti ti-shield-check"></i>Garantias</p>
-      <div class="policy-row"><span class="policy-label">Vagas abaixo de R$ 5.000</span><span class="policy-value">30 dias de garantia</span></div>
-      <div class="policy-row"><span class="policy-label">Reprocesso (abaixo de R$ 5.000)</span><span class="policy-value">50% desconto para 90 dias</span></div>
-      <div class="policy-row"><span class="policy-label">Vagas acima de R$ 5.000</span><span class="policy-value">90 dias de garantia</span></div>
-      <div class="policy-row"><span class="policy-label">Gatilho de fechamento</span><span class="policy-value">Assinatura do contrato</span></div>
+      <p class="policy-title"><i class="ti ti-shield-check"></i>Garantia de reposição</p>
+      <div class="policy-row"><span class="policy-label">Prazo de garantia</span><span class="policy-value">90 dias após início do candidato</span></div>
+      <div class="policy-row"><span class="policy-label">Cobertura</span><span class="policy-value">Saída voluntária ou desligamento por desempenho</span></div>
+      <div class="policy-row"><span class="policy-label">Reposição inclusa</span><span class="policy-value">1 novo processo sem custo adicional</span></div>
+      <div class="policy-row"><span class="policy-label">Não cobre</span><span class="policy-value">Reestruturação, layoff ou mudança de escopo</span></div>
+      <div class="policy-row"><span class="policy-label">Marco de início da garantia</span><span class="policy-value">Primeiro dia de trabalho do candidato</span></div>
     </div>
   </div>
 
